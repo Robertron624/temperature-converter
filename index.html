@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Temperature Converter</title>
   </head>
   <body>
     <main>
@@ -34,8 +34,11 @@
             <option value="kelvin">Kelvin</option>
           </select>
         </div>
-        <button type="submit">Convert</button>
+        <button disabled type="submit">Convert</button>
       </form>
+      <div class="result-wrapper">
+        <p class="result"></p>
+      </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
