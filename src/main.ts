@@ -1,13 +1,8 @@
 import "./style.css";
 
 import {
-  celsiusToFahrenheit,
-  fahrenheitToCelsius,
-  kelvinToCelsius,
-  celsiusToKelvin,
-  fahrenheitToKelvin,
-  kelvinToFahrenheit,
   trimNumber,
+  convertTemperature,
 } from "./operations";
 
 function main() {
@@ -53,31 +48,14 @@ function main() {
   temperatureConverterForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const value = parseFloat(valueToConvert?.value ?? "0");
-    const unitForm = unitFromSelect?.value;
-    const unitTo = unitToSelect?.value;
-    let convertedValue: number;
-
-    if (unitForm === "celsius" && unitTo === "fahrenheit") {
-      convertedValue = celsiusToFahrenheit(value);
-    } else if (unitForm === "fahrenheit" && unitTo === "celsius") {
-      convertedValue = fahrenheitToCelsius(value);
-    } else if (unitForm === "kelvin" && unitTo === "celsius") {
-      convertedValue = kelvinToCelsius(value);
-    } else if (unitForm === "celsius" && unitTo === "kelvin") {
-      convertedValue = celsiusToKelvin(value);
-    } else if (unitForm === "fahrenheit" && unitTo === "kelvin") {
-      convertedValue = fahrenheitToKelvin(value);
-    } else if (unitForm === "kelvin" && unitTo === "fahrenheit") {
-      convertedValue = kelvinToFahrenheit(value);
-    } else {
-      convertedValue = value;
-    }
+    const unitForm = unitFromSelect?.value ?? "celsius";
+    const unitTo = unitToSelect?.value ?? "fahrenheit";
+    
+    let convertedValue = convertTemperature(value, unitForm, unitTo);
 
     if (isNaN(convertedValue)) {
       convertedValue = 0;
     }
-
-    console.log("Converted value: ", convertedValue);
 
     // using the trimNumber function to round the converted value to 2 decimal places
     const convertedValueRounded = trimNumber(convertedValue);
@@ -88,7 +66,7 @@ function main() {
   });
 
   // By default the submit button is disabled, so we need to enable it, when the value to convert is filled
-  // when the select of the unit from and unit to have either celsius, fahrenheit or kelvin selected
+  // when the select of the unit from and unit to have either Celsius, Fahrenheit or kelvin selected
   // and when the value to convert is filled
   valueToConvert?.addEventListener("input", () => {
     checkIfAllFieldsAreFilled();
