@@ -34,6 +34,9 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 2rem auto;
+  max-width: 30rem;
+  text-align: center;
 }
 
 ul, ol {
@@ -125,4 +128,12 @@ form#temperature-converter button:disabled {
   background-color: #333;
   color: #ccc;
   cursor: not-allowed;
+}
+
+p#result {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-top: 1em;
+  color: #fcde37;
+  text-align: center;
 }
